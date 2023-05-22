@@ -6,8 +6,8 @@ const homeController = require("../controllers/homeController");
  * HOME
  */
 
-router.post("/", homeController.postHome);
 router.get("/", homeController.getHome);
+router.post("/", homeController.postHome);
 router.put("/", homeController.putHome);
 router.delete("/", homeController.deleteHome);
 

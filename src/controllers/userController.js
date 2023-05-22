@@ -33,8 +33,6 @@ const getUserById = (req, res) => {
 
 // POST
 const postUsers = (req, res) => {
-  console.log(req.body);
-
   const { firstname, lastname, email, city, language } = req.body;
 
   database
@@ -54,9 +52,25 @@ const postUsers = (req, res) => {
 
 // PUT
 const updateUser = (req, res) => {
-  res.json({
-    message: "C'est mis à jour !",
-  });
+  const { firstname, lastname, email, city, language } = req.body;
+  const id = Number(req.params.id);
+
+  database
+    .query(
+      "UPDATE users SET firstname=?, lastname=?, email=?, city=?, language=? WHERE id = ?",
+      [firstname, lastname, email, city, language, id]
+    )
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error saving the user");
+    });
 };
 
 // DELETE

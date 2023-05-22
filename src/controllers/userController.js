@@ -53,7 +53,7 @@ const postUsers = (req, res) => {
 };
 
 // PUT
-const putUsers = (req, res) => {
+const updateUser = (req, res) => {
   res.json({
     message: "C'est mis à jour !",
   });
@@ -70,6 +70,6 @@ module.exports = {
   getUsers,
   getUserById,
   postUsers,
-  putUsers,
+  updateUser,
   deleteUsers,
 };

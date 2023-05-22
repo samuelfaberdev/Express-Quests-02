@@ -24,6 +24,7 @@ app.get("/api/users/:id", userHandlers.getUserById);
 
 // Route POST
 app.post("/api/movies", movieHandlers.postMovies);
+app.post("/api/users", userHandlers.postUsers);
 
 app.listen(port, (err) => {
   if (err) {

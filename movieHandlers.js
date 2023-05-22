@@ -34,6 +34,7 @@ const getMovieById = (req, res) => {
 // POST
 const postMovies = (req, res) => {
   console.log(req.body);
+
   const { title, director, year, color, duration } = req.body;
 
   database

@@ -3,13 +3,7 @@ const database = require("../database");
 // GET
 const getSamples = (req, res) => {
   res.json({
-    message: "C'est affiché !",
-  });
-};
-
-const getSampleById = (req, res) => {
-  res.json({
-    message: "C'est affiché !",
+    message: "C'est récupéré !",
   });
 };
 
@@ -23,7 +17,7 @@ const postSamples = (req, res) => {
 // PUT
 const putSamples = (req, res) => {
   res.json({
-    message: "C'est à jour !",
+    message: "C'est mis à jour !",
   });
 };
 

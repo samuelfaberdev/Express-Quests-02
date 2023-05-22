@@ -55,7 +55,7 @@ const postUsers = (req, res) => {
 // PUT
 const putUsers = (req, res) => {
   res.json({
-    message: "C'est à jour !",
+    message: "C'est mis à jour !",
   });
 };
 

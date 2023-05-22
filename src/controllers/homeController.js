@@ -3,7 +3,7 @@ const database = require("../database");
 // GET
 const getHome = (req, res) => {
   res.json({
-    message: "Welcome to my favourite movie list",
+    message: "Bienvenu sur ma liste de films favorite !",
   });
 };
 

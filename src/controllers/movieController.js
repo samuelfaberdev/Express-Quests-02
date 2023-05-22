@@ -54,7 +54,7 @@ const postMovies = (req, res) => {
 
 const putMovies = (req, res) => {
   res.json({
-    message: "C'est à jour !",
+    message: "C'est mis à jour !",
   });
 };
 

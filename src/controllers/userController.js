@@ -74,10 +74,22 @@ const updateUser = (req, res) => {
 };
 
 // DELETE
-const deleteUsers = (req, res) => {
-  res.json({
-    message: "C'est delete !",
-  });
+const deleteUser = (req, res) => {
+  const id = Number(req.params.id);
+
+  database
+    .query("DELETE FROM users WHERE id = ?", [id])
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error deleting the user");
+    });
 };
 
 module.exports = {
@@ -85,5 +97,5 @@ module.exports = {
   getUserById,
   postUsers,
   updateUser,
-  deleteUsers,
+  deleteUser,
 };

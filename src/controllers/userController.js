@@ -1,4 +1,4 @@
-const database = require("./database");
+const database = require("../database");
 
 // GET
 const getUsers = (req, res) => {
@@ -48,12 +48,28 @@ const postUsers = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Error saving the movie");
+      res.status(500).send("Error saving the user");
     });
+};
+
+// PUT
+const putUsers = (req, res) => {
+  res.json({
+    message: "C'est à jour !",
+  });
+};
+
+// DELETE
+const deleteUsers = (req, res) => {
+  res.json({
+    message: "C'est delete !",
+  });
 };
 
 module.exports = {
   getUsers,
   getUserById,
   postUsers,
+  putUsers,
+  deleteUsers,
 };

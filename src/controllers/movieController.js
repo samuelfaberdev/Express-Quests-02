@@ -1,4 +1,4 @@
-const database = require("./database");
+const database = require("../database");
 
 // GET
 const getMovies = (req, res) => {
@@ -52,8 +52,22 @@ const postMovies = (req, res) => {
     });
 };
 
+const putMovies = (req, res) => {
+  res.json({
+    message: "C'est à jour !",
+  });
+};
+
+const deleteMovies = (req, res) => {
+  res.json({
+    message: "C'est delete !",
+  });
+};
+
 module.exports = {
   getMovies,
   getMovieById,
   postMovies,
+  putMovies,
+  deleteMovies,
 };

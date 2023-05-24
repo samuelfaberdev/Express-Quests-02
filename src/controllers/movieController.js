@@ -12,7 +12,7 @@ const getMovies = (req, res) => {
     sqlReq += " where color = ?";
     sqlQuery.push(req.query.color);
   } else if (req.query.max_duration) {
-    sqlReq = "select * from movies where duration <= ?";
+    sqlReq += " where duration <= ?";
     sqlQuery.push(req.query.max_duration);
   }
 

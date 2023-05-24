@@ -2,10 +2,24 @@ const database = require("../database");
 
 // GET
 const getUsers = (req, res) => {
+  let sqlReq = "select * from users";
+  let sqlQuery = [];
+
+  if (req.query.language && req.query.city) {
+    sqlReq += " where language = ? and city = ?";
+    sqlQuery.push(req.query.language, req.query.city);
+  } else if (req.query.language) {
+    sqlReq += " where language = ?";
+    sqlQuery.push(req.query.language);
+  } else if (req.query.city) {
+    sqlReq += " where city = ?";
+    sqlQuery.push(req.query.city);
+  }
+
   database
-    .query("select * from users")
-    .then(([movies]) => {
-      res.json(movies);
+    .query(sqlReq, sqlQuery)
+    .then(([users]) => {
+      res.json(users);
     })
     .catch((err) => {
       console.error(err);
@@ -18,9 +32,9 @@ const getUserById = (req, res) => {
 
   database
     .query("select * from users where id = ?", [id])
-    .then(([movie]) => {
-      if (movie[0] != null) {
-        res.json(movie[0]);
+    .then(([user]) => {
+      if (user[0] != null) {
+        res.json(user[0]);
       } else {
         res.status(404).send(`User N°${id} Not Found`);
       }

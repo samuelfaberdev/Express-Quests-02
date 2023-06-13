@@ -5,12 +5,13 @@ const userController = require("../controllers/userController");
 /**
  * Movie
  */
+const { hashPassword } = require("../auth.js");
 
 // Route "/api/movies"
 router.get("/", userController.getUsers);
 router.get("/:id", userController.getUserById);
-router.post("/", userController.postUsers);
-router.put("/:id", userController.updateUser);
+router.post("/", hashPassword, userController.postUsers);
+router.put("/:id", hashPassword, userController.updateUser);
 router.delete("/", userController.deleteUsers);
 
 module.exports = router;

@@ -2,7 +2,8 @@ const database = require("../database");
 
 // GET
 const getUsers = (req, res) => {
-  let sqlReq = "select * from users";
+  let sqlReq =
+    "select id, firstname, lastname, email, city, language from users";
   let sqlQuery = [];
 
   if (req.query.language && req.query.city) {
@@ -31,7 +32,10 @@ const getUserById = (req, res) => {
   const id = parseInt(req.params.id);
 
   database
-    .query("select * from users where id = ?", [id])
+    .query(
+      "select id, firstname, lastname, email, city, language from users where id = ?",
+      [id]
+    )
     .then(([user]) => {
       if (user[0] != null) {
         res.json(user[0]);
@@ -47,12 +51,13 @@ const getUserById = (req, res) => {
 
 // POST
 const postUsers = (req, res) => {
-  const { firstname, lastname, email, city, language } = req.body;
+  const { firstname, lastname, email, city, language, hashedPassword } =
+    req.body;
 
   database
     .query(
-      "INSERT INTO users(firstname, lastname, email, city, language) VALUES (?, ?, ?, ?, ?)",
-      [firstname, lastname, email, city, language]
+      "INSERT INTO users(firstname, lastname, email, city, language, hashedpassword) VALUES (?, ?, ?, ?, ?, ?)",
+      [firstname, lastname, email, city, language, hashedPassword]
     )
     .then(([result]) => {
       console.log("Done");
@@ -66,13 +71,14 @@ const postUsers = (req, res) => {
 
 // PUT
 const updateUser = (req, res) => {
-  const { firstname, lastname, email, city, language } = req.body;
+  const { firstname, lastname, email, city, language, hashedPassword } =
+    req.body;
   const id = Number(req.params.id);
 
   database
     .query(
-      "UPDATE users SET firstname=?, lastname=?, email=?, city=?, language=? WHERE id = ?",
-      [firstname, lastname, email, city, language, id]
+      "UPDATE users SET firstname=?, lastname=?, email=?, city=?, language=?, hashedpassword=? WHERE id = ?",
+      [firstname, lastname, email, city, language, hashedPassword, id]
     )
     .then(([result]) => {
       if (result.affectedRows === 0) {

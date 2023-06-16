@@ -24,6 +24,6 @@ router.use(verifyToken);
 /** Private Routes */
 router.post("/", hashPassword, userController.postUsers);
 router.put("/:id", hashPassword, userController.updateUser);
-router.delete("/", userController.deleteUsers);
+router.delete("/:id", userController.deleteUser);
 
 module.exports = router;
